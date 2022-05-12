@@ -18,7 +18,7 @@
   <lib desc="#BFH-Praktika" name="9"/>
   <lib desc="#Input/Output-Extra" name="10"/>
   <lib desc="#Soc" name="11"/>
-  <main name="main"/>
+  <main name="Neuron"/>
   <options>
     <a name="gateUndefined" val="ignore"/>
     <a name="simlimit" val="1000"/>
@@ -51,140 +51,6 @@
     <tool lib="4" name="D Flip-Flop"/>
     <tool lib="4" name="Register"/>
   </toolbar>
-  <circuit name="main">
-    <a name="appearance" val="logisim_evolution"/>
-    <a name="circuit" val="main"/>
-    <a name="circuitnamedboxfixedsize" val="true"/>
-    <a name="simulationFrequency" val="1.0"/>
-  </circuit>
-  <circuit name="Neuron">
-    <a name="appearance" val="logisim_evolution"/>
-    <a name="circuit" val="Neuron"/>
-    <a name="circuitnamedboxfixedsize" val="true"/>
-    <a name="simulationFrequency" val="1.0"/>
-    <comp lib="0" loc="(110,160)" name="Pin">
-      <a name="appearance" val="NewPins"/>
-      <a name="label" val="RESET"/>
-    </comp>
-    <comp lib="0" loc="(120,650)" name="Pin">
-      <a name="appearance" val="NewPins"/>
-      <a name="label" val="ENABLE"/>
-    </comp>
-    <comp lib="0" loc="(410,590)" name="Pin">
-      <a name="appearance" val="NewPins"/>
-      <a name="label" val="WEIGHT4"/>
-      <a name="width" val="8"/>
-    </comp>
-    <comp lib="0" loc="(420,560)" name="Pin">
-      <a name="appearance" val="NewPins"/>
-      <a name="label" val="WEIGHT3"/>
-      <a name="width" val="8"/>
-    </comp>
-    <comp lib="0" loc="(430,310)" name="Pin">
-      <a name="appearance" val="NewPins"/>
-      <a name="label" val="INPUT4"/>
-      <a name="width" val="8"/>
-    </comp>
-    <comp lib="0" loc="(430,530)" name="Pin">
-      <a name="appearance" val="NewPins"/>
-      <a name="label" val="WEIGHT2"/>
-      <a name="width" val="8"/>
-    </comp>
-    <comp lib="0" loc="(440,280)" name="Pin">
-      <a name="appearance" val="NewPins"/>
-      <a name="label" val="INPUT3"/>
-      <a name="width" val="8"/>
-    </comp>
-    <comp lib="0" loc="(440,500)" name="Pin">
-      <a name="appearance" val="NewPins"/>
-      <a name="label" val="WEIGHT1"/>
-      <a name="width" val="8"/>
-    </comp>
-    <comp lib="0" loc="(450,250)" name="Pin">
-      <a name="appearance" val="NewPins"/>
-      <a name="label" val="INPUT2"/>
-      <a name="width" val="8"/>
-    </comp>
-    <comp lib="0" loc="(460,220)" name="Pin">
-      <a name="appearance" val="NewPins"/>
-      <a name="label" val="INPUT1"/>
-      <a name="width" val="8"/>
-    </comp>
-    <comp lib="0" loc="(760,350)" name="Pin">
-      <a name="appearance" val="NewPins"/>
-      <a name="facing" val="west"/>
-      <a name="label" val="NeuronOUT"/>
-      <a name="output" val="true"/>
-      <a name="radix" val="16"/>
-      <a name="width" val="8"/>
-    </comp>
-    <comp lib="2" loc="(510,320)" name="Multiplexer">
-      <a name="select" val="2"/>
-      <a name="width" val="8"/>
-    </comp>
-    <comp lib="2" loc="(560,370)" name="Multiplexer">
-      <a name="select" val="2"/>
-      <a name="width" val="8"/>
-    </comp>
-    <comp lib="3" loc="(660,350)" name="Multiplier"/>
-    <comp lib="4" loc="(200,320)" name="Counter">
-      <a name="appearance" val="logisim_evolution"/>
-      <a name="max" val="0x3"/>
-      <a name="width" val="2"/>
-    </comp>
-    <comp lib="4" loc="(680,320)" name="Register">
-      <a name="appearance" val="logisim_evolution"/>
-    </comp>
-    <wire from="(110,160)" to="(140,160)"/>
-    <wire from="(120,370)" to="(120,650)"/>
-    <wire from="(120,370)" to="(200,370)"/>
-    <wire from="(120,650)" to="(680,650)"/>
-    <wire from="(140,160)" to="(140,340)"/>
-    <wire from="(140,160)" to="(670,160)"/>
-    <wire from="(140,340)" to="(200,340)"/>
-    <wire from="(200,340)" to="(210,340)"/>
-    <wire from="(200,370)" to="(210,370)"/>
-    <wire from="(380,430)" to="(490,430)"/>
-    <wire from="(410,590)" to="(480,590)"/>
-    <wire from="(420,560)" to="(470,560)"/>
-    <wire from="(430,310)" to="(440,310)"/>
-    <wire from="(430,530)" to="(460,530)"/>
-    <wire from="(440,280)" to="(450,280)"/>
-    <wire from="(440,310)" to="(440,330)"/>
-    <wire from="(440,330)" to="(470,330)"/>
-    <wire from="(440,500)" to="(450,500)"/>
-    <wire from="(450,250)" to="(460,250)"/>
-    <wire from="(450,280)" to="(450,320)"/>
-    <wire from="(450,320)" to="(470,320)"/>
-    <wire from="(450,350)" to="(450,500)"/>
-    <wire from="(450,350)" to="(520,350)"/>
-    <wire from="(460,220)" to="(470,220)"/>
-    <wire from="(460,250)" to="(460,310)"/>
-    <wire from="(460,310)" to="(470,310)"/>
-    <wire from="(460,360)" to="(460,530)"/>
-    <wire from="(460,360)" to="(520,360)"/>
-    <wire from="(470,220)" to="(470,300)"/>
-    <wire from="(470,370)" to="(470,560)"/>
-    <wire from="(470,370)" to="(520,370)"/>
-    <wire from="(480,380)" to="(480,590)"/>
-    <wire from="(480,380)" to="(520,380)"/>
-    <wire from="(490,340)" to="(490,430)"/>
-    <wire from="(490,430)" to="(540,430)"/>
-    <wire from="(510,320)" to="(610,320)"/>
-    <wire from="(540,390)" to="(540,430)"/>
-    <wire from="(560,370)" to="(600,370)"/>
-    <wire from="(600,360)" to="(600,370)"/>
-    <wire from="(600,360)" to="(620,360)"/>
-    <wire from="(610,320)" to="(610,340)"/>
-    <wire from="(610,340)" to="(620,340)"/>
-    <wire from="(660,350)" to="(680,350)"/>
-    <wire from="(670,160)" to="(670,390)"/>
-    <wire from="(670,390)" to="(680,390)"/>
-    <wire from="(680,350)" to="(690,350)"/>
-    <wire from="(680,370)" to="(680,390)"/>
-    <wire from="(680,390)" to="(680,650)"/>
-    <wire from="(740,350)" to="(760,350)"/>
-  </circuit>
   <circuit name="HiddenLayer">
     <a name="appearance" val="logisim_evolution"/>
     <a name="circuit" val="HiddenLayer"/>
@@ -348,4 +214,184 @@
     <wire from="(260,680)" to="(260,690)"/>
     <wire from="(260,730)" to="(270,730)"/>
   </circuit>
+  <circuit name="main">
+    <a name="appearance" val="logisim_evolution"/>
+    <a name="circuit" val="main"/>
+    <a name="circuitnamedboxfixedsize" val="true"/>
+    <a name="simulationFrequency" val="1.0"/>
+  </circuit>
+  <circuit name="Neuron">
+    <a name="appearance" val="logisim_evolution"/>
+    <a name="circuit" val="Neuron"/>
+    <a name="circuitnamedboxfixedsize" val="true"/>
+    <a name="simulationFrequency" val="1.0"/>
+    <comp lib="0" loc="(110,160)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="RESET"/>
+    </comp>
+    <comp lib="0" loc="(120,650)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="ENABLE"/>
+    </comp>
+    <comp lib="0" loc="(410,590)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="WEIGHT4"/>
+      <a name="width" val="8"/>
+    </comp>
+    <comp lib="0" loc="(420,560)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="WEIGHT3"/>
+      <a name="width" val="8"/>
+    </comp>
+    <comp lib="0" loc="(430,310)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="INPUT4"/>
+      <a name="width" val="8"/>
+    </comp>
+    <comp lib="0" loc="(430,530)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="WEIGHT2"/>
+      <a name="width" val="8"/>
+    </comp>
+    <comp lib="0" loc="(440,280)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="INPUT3"/>
+      <a name="width" val="8"/>
+    </comp>
+    <comp lib="0" loc="(440,500)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="WEIGHT1"/>
+      <a name="width" val="8"/>
+    </comp>
+    <comp lib="0" loc="(450,250)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="INPUT2"/>
+      <a name="width" val="8"/>
+    </comp>
+    <comp lib="0" loc="(460,220)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="INPUT1"/>
+      <a name="width" val="8"/>
+    </comp>
+    <comp lib="0" loc="(760,350)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="NeuronOUT"/>
+      <a name="output" val="true"/>
+      <a name="radix" val="16"/>
+      <a name="width" val="8"/>
+    </comp>
+    <comp lib="2" loc="(510,320)" name="Multiplexer">
+      <a name="select" val="2"/>
+      <a name="width" val="8"/>
+    </comp>
+    <comp lib="2" loc="(560,370)" name="Multiplexer">
+      <a name="select" val="2"/>
+      <a name="width" val="8"/>
+    </comp>
+    <comp lib="3" loc="(660,350)" name="Multiplier"/>
+    <comp lib="4" loc="(200,320)" name="Counter">
+      <a name="appearance" val="logisim_evolution"/>
+      <a name="max" val="0x3"/>
+      <a name="width" val="2"/>
+    </comp>
+    <comp lib="4" loc="(680,320)" name="Register">
+      <a name="appearance" val="logisim_evolution"/>
+    </comp>
+    <wire from="(110,160)" to="(140,160)"/>
+    <wire from="(120,370)" to="(120,650)"/>
+    <wire from="(120,370)" to="(200,370)"/>
+    <wire from="(120,650)" to="(680,650)"/>
+    <wire from="(140,160)" to="(140,340)"/>
+    <wire from="(140,160)" to="(670,160)"/>
+    <wire from="(140,340)" to="(200,340)"/>
+    <wire from="(200,340)" to="(210,340)"/>
+    <wire from="(200,370)" to="(210,370)"/>
+    <wire from="(380,430)" to="(490,430)"/>
+    <wire from="(410,590)" to="(480,590)"/>
+    <wire from="(420,560)" to="(470,560)"/>
+    <wire from="(430,310)" to="(440,310)"/>
+    <wire from="(430,530)" to="(460,530)"/>
+    <wire from="(440,280)" to="(450,280)"/>
+    <wire from="(440,310)" to="(440,330)"/>
+    <wire from="(440,330)" to="(470,330)"/>
+    <wire from="(440,500)" to="(450,500)"/>
+    <wire from="(450,250)" to="(460,250)"/>
+    <wire from="(450,280)" to="(450,320)"/>
+    <wire from="(450,320)" to="(470,320)"/>
+    <wire from="(450,350)" to="(450,500)"/>
+    <wire from="(450,350)" to="(520,350)"/>
+    <wire from="(460,220)" to="(470,220)"/>
+    <wire from="(460,250)" to="(460,310)"/>
+    <wire from="(460,310)" to="(470,310)"/>
+    <wire from="(460,360)" to="(460,530)"/>
+    <wire from="(460,360)" to="(520,360)"/>
+    <wire from="(470,220)" to="(470,300)"/>
+    <wire from="(470,370)" to="(470,560)"/>
+    <wire from="(470,370)" to="(520,370)"/>
+    <wire from="(480,380)" to="(480,590)"/>
+    <wire from="(480,380)" to="(520,380)"/>
+    <wire from="(490,340)" to="(490,430)"/>
+    <wire from="(490,430)" to="(540,430)"/>
+    <wire from="(510,320)" to="(610,320)"/>
+    <wire from="(540,390)" to="(540,430)"/>
+    <wire from="(560,370)" to="(600,370)"/>
+    <wire from="(600,360)" to="(600,370)"/>
+    <wire from="(600,360)" to="(620,360)"/>
+    <wire from="(610,320)" to="(610,340)"/>
+    <wire from="(610,340)" to="(620,340)"/>
+    <wire from="(660,350)" to="(680,350)"/>
+    <wire from="(670,160)" to="(670,390)"/>
+    <wire from="(670,390)" to="(680,390)"/>
+    <wire from="(680,350)" to="(690,350)"/>
+    <wire from="(680,370)" to="(680,390)"/>
+    <wire from="(680,390)" to="(680,650)"/>
+    <wire from="(740,350)" to="(760,350)"/>
+  </circuit>
+  <vhdl name="Sigmoid_Activation_Function">--------------------------------------------------------------------------------&#13;
+-- Project :&#13; FPGA-NN
+-- File    :&#13; 
+-- Autor   :&#13;
+-- Date    :&#13; 
+--&#13;
+--------------------------------------------------------------------------------&#13;
+-- Description : This is a sigmoid function that takes an 8-bit input vector and outputs an 8-bit result vector.
+--&#13;
+--------------------------------------------------------------------------------&#13;
+&#13;
+LIBRARY ieee;&#13;
+USE ieee.std_logic_1164.all;&#13;
+&#13;
+ENTITY Sigmoid_Activation_Function IS&#13;
+  PORT (&#13;
+  ------------------------------------------------------------------------------&#13;
+  --Insert input ports below&#13;
+    clock      : IN  std_logic;                    -- input bit example&#13;
+    x        	: IN  std_logic_vector(7 DOWNTO 0); -- input vector example&#13;
+  ------------------------------------------------------------------------------&#13;
+  --Insert output ports below&#13;
+    max        : OUT std_logic;                    -- output bit example&#13;
+    y        	: OUT std_logic_vector(7 DOWNTO 0)  -- output vector example&#13;
+    );&#13;
+END Sigmoid_Activation_Function;&#13;
+&#13;
+--------------------------------------------------------------------------------&#13;
+-- VHDL Description
+--------------------------------------------------------------------------------&#13;
+&#13;
+ARCHITECTURE Behavioural OF Sigmoid_Activation_Function IS&#13;
+&#13;
+-- creates a 16-bit wide intermediate signal to aid calculatons
+signal temp : std_logic_vector(15 downto 0);
+
+BEGIN&#13;
+&#13;
+-- takes the negation of our input, and pads it with zeroes to make it 16 bits wide to be saved to the intermediate signal "temp"
+temp &lt;= NOT x + "0000000000000001";
+
+-- takes the square negation of our input to save to output "y".
+y &lt;= std_logic_vector(unsigned(temp)*unsigned(temp));
+
+END Behavioral;&#13;
+</vhdl>
 </project>
