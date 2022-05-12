@@ -379,6 +379,8 @@ END Sigmoid_Activation_Function;&#13;
 -- VHDL Description
 --------------------------------------------------------------------------------&#13;
 &#13;
+-- Sigmoid function output formula: y = 1 / (1 + e^-x)
+
 ARCHITECTURE Behavioural OF Sigmoid_Activation_Function IS&#13;
 &#13;
 -- creates a 16-bit wide intermediate signal to aid calculatons
