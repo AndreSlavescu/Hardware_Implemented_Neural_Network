@@ -1,0 +1,39 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+
+\title{Mathematical Implementation of a Gradient Descent Algorithm in a VHDL implemented MLP}
+\author{Andre Slavescu, Luca Bastone-Mohabir}
+\date{June 8, 2022}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction to the Algorithm}
+
+The gradient descent algorithm is a simple and efficient method to achieve the minimum value of a given function. Given a function $f(x)$, the gradient descent algorithm starts at a point $x_0$ and iteratively proceeds in the direction of the negative gradient of $f$ at $x_0$, $-\nabla f(x_0)$, until it reaches a target point where the calculated gradient is zero. The gradient descent algorithm can be written as follows:
+
+\begin{align*}
+x_{n+1} &= x_n - \alpha \nabla f(x_n) \\
+& \text{where } \alpha > 0 \text{ is a step size.}
+\end{align*}
+
+The gradient descent algorithm is guaranteed to converge to a local minimum of $f$, provided that $f$ is a convex function.
+
+\section{Example Function: $f(x)=x^2$}
+
+Consider the function $f(x) = x^2$. The gradient of the given is $\nabla f(x) = 2x$, and the gradient descent algorithm is derived as the following:
+
+\begin{align*}
+x_{n+1} &= x_n - \alpha \nabla f(x_n) \\
+&= x_n - \alpha (2x_n) \\
+&= (1 - 2\alpha)x_n.
+\end{align*}
+
+This algorithm will converge to the point $x=0$ regardless of the starting point $x_0$, given that the following condition is satisfied; $\alpha < \frac{1}{2}$.
+
+\section{Application and Objective}
+
+The presented gradient descent algorithm will be applied to an MLP (multi layer perceptron) designed in VHDL. The objective is to achieve a functional learning step for the designed MLP.
+\end{document}

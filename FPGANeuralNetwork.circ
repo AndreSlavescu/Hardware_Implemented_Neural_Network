@@ -585,4 +585,42 @@ y &lt;= std_logic_vector(unsigned(temp)*unsigned(temp));
 
 END Behavioral;&#13;
 </vhdl>
+  <vhdl name="weight_register">--------------------------------------------------------------------------------&#13;
+-- Project :&#13; FPGA-NN
+-- File    :&#13; 
+-- Autor   :&#13;
+-- Date    :&#13;
+--&#13;
+--------------------------------------------------------------------------------&#13;
+-- Description :&#13;
+--&#13;
+--------------------------------------------------------------------------------&#13;
+&#13;
+LIBRARY ieee;&#13;
+USE ieee.std_logic_1164.all;&#13;
+&#13;
+ENTITY weight_register IS&#13;
+  PORT (&#13;
+  ------------------------------------------------------------------------------&#13;
+  --Insert input ports below&#13;
+    clock      : IN  std_logic;                    -- input bit example&#13;
+    val        : IN  std_logic_vector(3 DOWNTO 0); -- input vector example&#13;
+  ------------------------------------------------------------------------------&#13;
+  --Insert output ports below&#13;
+    max        : OUT std_logic;                    -- output bit example&#13;
+    cpt        : OUT std_logic_vector(3 DOWNTO 0)  -- output vector example&#13;
+    );&#13;
+END weight_register;&#13;
+&#13;
+--------------------------------------------------------------------------------&#13;
+--Complete your VHDL description below&#13;
+--------------------------------------------------------------------------------&#13;
+&#13;
+ARCHITECTURE TypeArchitecture OF weight_register IS&#13;
+&#13;
+BEGIN&#13;
+&#13;
+&#13;
+END TypeArchitecture;&#13;
+</vhdl>
 </project>
