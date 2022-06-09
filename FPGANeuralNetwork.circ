@@ -578,14 +578,15 @@
     <wire from="(740,350)" to="(760,350)"/>
   </circuit>
   <vhdl name="Sigmoid_Activation_Function">--------------------------------------------------------------------------------&#13;
--- Project :&#13; FPGA-NN
+-- Project :&#13; Hardware_Implemented_Neural_Network
 -- File    :&#13; 
 -- Autor   :&#13;
 -- Date    :&#13; 
 --&#13;
 --------------------------------------------------------------------------------&#13;
--- Description : This is a sigmoid function that takes an 8-bit input vector and outputs an 8-bit result vector.
---&#13;
+-- Description : 
+-- This is a sigmoid function that takes an 8-bit input vector and outputs an 8-bit result vector.
+--
 --------------------------------------------------------------------------------&#13;
 &#13;
 LIBRARY ieee;&#13;
@@ -624,7 +625,7 @@ y &lt;= std_logic_vector(unsigned(temp)*unsigned(temp));
 END Behavioral;&#13;
 </vhdl>
   <vhdl name="weight_register">--------------------------------------------------------------------------------&#13;
--- Project :&#13; FPGA-NN
+-- Project :&#13; Hardware_Implemented_Neural_Network
 -- File    :&#13; 
 -- Autor   :&#13;
 -- Date    :&#13;
@@ -660,5 +661,85 @@ BEGIN&#13;
 &#13;
 &#13;
 END TypeArchitecture;&#13;
+</vhdl>
+  <vhdl name="gradient_descent">--------------------------------------------------------------------------------&#13;
+-- Project :&#13; Hardware_Implemented_Neural_Network
+-- File    :&#13;
+-- Autor   :&#13;
+-- Date    :&#13; 
+--&#13;
+--------------------------------------------------------------------------------&#13;
+-- Description :&#13; 
+-- This is a gradient descent algorithm implemented in VHDL.
+-- The purpose of the algorithm is to find the weights that minimize the error between the predicted values and the actual values. 
+-- The inputs to the entity are the data (x) and the actual values (y). The clock (clk) and reset (rst) signals are also inputs.
+-- The output (done) is '1' when the predicted values match the actual values. 
+-- The algorithm consists of four states. In state 0, the error is calculated for each bit of data.
+-- In state 1, the delta is calculated. In state 2, the weights are updated. In state 3, the predicted values are updated.
+--
+--------------------------------------------------------------------------------&#13;
+&#13;
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.all;
+
+ENTITY gradient_descent IS
+PORT(
+    x : IN std_logic_vector(7 downto 0);
+    y : IN std_logic_vector(7 downto 0);
+    clk : IN std_logic;
+    rst : IN std_logic;
+    done : OUT std_logic
+    );
+END gradient_descent;
+
+--------------------------------------------------------------------------------
+--Complete your VHDL description below
+--------------------------------------------------------------------------------
+
+ARCHITECTURE Behavioral OF gradient_descent IS
+
+signal state : integer range 0 to 3 := 0;
+signal count : integer range 0 to 7 := 0;
+signal error : std_logic_vector(3 downto 0) := (others =&gt; '0');
+signal y_hat : std_logic_vector(7 downto 0) := (others =&gt; '0');
+signal delta : std_logic_vector(3 downto 0) := (others =&gt; '0');
+signal weight : std_logic_vector(3 downto 0) := "0001";
+constant learning_rate : real := 0.1;
+
+BEGIN
+
+process(clk, rst)
+begin
+    if(rst = '1') then
+        state &lt;= 0;
+        count &lt;= 0;
+        error &lt;= (others =&gt; '0');
+        y_hat &lt;= (others =&gt; '0');
+    elsif(rising_edge(clk)) then
+        case state is
+            when 0 =&gt;
+                if(count &lt; 8) then
+                    error &lt;= error + (x(count) xor y_hat(count));
+                    count &lt;= count + 1;
+                else
+                    count &lt;= 0;
+                    state &lt;= 1;
+                end if;
+            when 1 =&gt;
+                delta &lt;= error * weight;
+                state &lt;= 2;
+            when 2 =&gt;
+                weight &lt;= weight - (learning_rate * delta);
+                state &lt;= 3;
+            when 3 =&gt;
+                state &lt;= 0;
+                y_hat &lt;= y_hat + delta;
+        end case;
+    end if;
+end process;
+
+done &lt;= '1' when y_hat = y else '0';
+
+END Behavioral;
 </vhdl>
 </project>
