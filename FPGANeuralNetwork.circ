@@ -295,9 +295,9 @@
       <a name="incoming" val="32"/>
     </comp>
     <comp lib="10" loc="(80,320)" name="Switch"/>
-    <comp loc="(700,130)" name="Neuron"/>
-    <comp loc="(700,350)" name="Neuron"/>
-    <comp loc="(700,570)" name="Neuron"/>
+    <comp loc="(480,130)" name="Neuron"/>
+    <comp loc="(480,350)" name="Neuron"/>
+    <comp loc="(480,570)" name="Neuron"/>
     <wire from="(190,140)" to="(260,140)"/>
     <wire from="(230,270)" to="(400,270)"/>
     <wire from="(230,410)" to="(360,410)"/>
@@ -373,12 +373,8 @@
     <wire from="(470,710)" to="(480,710)"/>
     <wire from="(480,130)" to="(480,140)"/>
     <wire from="(480,240)" to="(480,250)"/>
-    <wire from="(480,450)" to="(500,450)"/>
     <wire from="(480,460)" to="(480,470)"/>
-    <wire from="(480,610)" to="(490,610)"/>
-    <wire from="(480,670)" to="(490,670)"/>
     <wire from="(480,680)" to="(480,690)"/>
-    <wire from="(480,730)" to="(490,730)"/>
     <wire from="(80,320)" to="(240,320)"/>
   </circuit>
   <circuit name="main">
@@ -386,28 +382,34 @@
     <a name="circuit" val="main"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="simulationFrequency" val="1.0"/>
+    <comp lib="0" loc="(300,220)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="reset"/>
+    </comp>
     <comp lib="4" loc="(140,270)" name="Register">
       <a name="appearance" val="logisim_evolution"/>
+      <a name="label" val="weight1"/>
       <a name="width" val="32"/>
     </comp>
-    <comp lib="4" loc="(150,400)" name="Register">
+    <comp lib="4" loc="(140,410)" name="Register">
       <a name="appearance" val="logisim_evolution"/>
+      <a name="label" val="weight2"/>
       <a name="width" val="32"/>
     </comp>
-    <comp lib="4" loc="(160,510)" name="Register">
+    <comp lib="4" loc="(140,530)" name="Register">
       <a name="appearance" val="logisim_evolution"/>
+      <a name="label" val="weight3"/>
       <a name="width" val="32"/>
     </comp>
-    <comp lib="5" loc="(300,220)" name="Button"/>
     <comp loc="(350,300)" name="HiddenLayer"/>
     <wire from="(200,300)" to="(280,300)"/>
-    <wire from="(210,430)" to="(240,430)"/>
+    <wire from="(200,440)" to="(240,440)"/>
+    <wire from="(200,560)" to="(270,560)"/>
     <wire from="(220,340)" to="(220,380)"/>
     <wire from="(220,340)" to="(350,340)"/>
-    <wire from="(220,540)" to="(270,540)"/>
-    <wire from="(240,360)" to="(240,430)"/>
+    <wire from="(240,360)" to="(240,440)"/>
     <wire from="(240,360)" to="(350,360)"/>
-    <wire from="(270,380)" to="(270,540)"/>
+    <wire from="(270,380)" to="(270,560)"/>
     <wire from="(270,380)" to="(350,380)"/>
     <wire from="(280,300)" to="(280,320)"/>
     <wire from="(280,320)" to="(350,320)"/>
@@ -423,13 +425,6 @@
     <a name="circuit" val="Neuron"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="simulationFrequency" val="1.0"/>
-    <comp lib="0" loc="(1020,350)" name="Pin">
-      <a name="appearance" val="NewPins"/>
-      <a name="facing" val="west"/>
-      <a name="output" val="true"/>
-      <a name="radix" val="16"/>
-      <a name="width" val="8"/>
-    </comp>
     <comp lib="0" loc="(110,160)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="label" val="RESET"/>
@@ -495,10 +490,6 @@
     <comp lib="4" loc="(680,320)" name="Register">
       <a name="appearance" val="logisim_evolution"/>
     </comp>
-    <comp loc="(1010,350)" name="Sigmoid_Activation_Function">
-      <a name="appearance" val="logisim_evolution"/>
-    </comp>
-    <wire from="(1010,350)" to="(1020,350)"/>
     <wire from="(110,160)" to="(140,160)"/>
     <wire from="(120,370)" to="(120,650)"/>
     <wire from="(120,370)" to="(200,370)"/>
@@ -547,7 +538,6 @@
     <wire from="(680,350)" to="(690,350)"/>
     <wire from="(680,370)" to="(680,390)"/>
     <wire from="(680,390)" to="(680,650)"/>
-    <wire from="(740,350)" to="(790,350)"/>
   </circuit>
   <vhdl name="Sigmoid_Activation_Function">--------------------------------------------------------------------------------&#13;
 -- Project :&#13; FPGA-NN
