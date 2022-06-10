@@ -631,37 +631,47 @@ END Behavioral;&#13;
 -- Date    :&#13;
 --&#13;
 --------------------------------------------------------------------------------&#13;
--- Description :&#13;
+-- Description :&#13; 
+-- This is a weight register that takes in data and outputs it on the next clock cycle.
 --&#13;
 --------------------------------------------------------------------------------&#13;
 &#13;
-LIBRARY ieee;&#13;
-USE ieee.std_logic_1164.all;&#13;
-&#13;
-ENTITY weight_register IS&#13;
-  PORT (&#13;
-  ------------------------------------------------------------------------------&#13;
-  --Insert input ports below&#13;
-    clock      : IN  std_logic;                    -- input bit example&#13;
-    val        : IN  std_logic_vector(3 DOWNTO 0); -- input vector example&#13;
-  ------------------------------------------------------------------------------&#13;
-  --Insert output ports below&#13;
-    max        : OUT std_logic;                    -- output bit example&#13;
-    cpt        : OUT std_logic_vector(3 DOWNTO 0)  -- output vector example&#13;
-    );&#13;
-END weight_register;&#13;
-&#13;
---------------------------------------------------------------------------------&#13;
---Complete your VHDL description below&#13;
---------------------------------------------------------------------------------&#13;
-&#13;
-ARCHITECTURE TypeArchitecture OF weight_register IS&#13;
-&#13;
-BEGIN&#13;
-&#13;
-&#13;
-END TypeArchitecture;&#13;
-</vhdl>
+-- The weight_register entity has a clock (clk), reset (rst), data, and queue port. 
+-- When the reset port is high, the temp signal is set to all 0's. When the clock 
+-- port is high (on the rising edge), the temp signal is set to the data. The queue 
+-- port is always equal to the temp signal.
+
+
+LIBRARY IEEE;
+USE IEEE.std_logic_1164.ALL;
+
+entity weight_register is
+    port(
+        clk : IN std_logic;
+        rst : IN std_logic;
+        data : IN std_logic_vector(7 DOWNTO 0);
+        queue : OUT std_logic_vector(7 DOWNTO 0)
+    );
+END weight_register;
+
+ARCHITECTURE Behavioral OF weight_register IS
+
+signal temp : std_logic_vector(7 DOWNTO 0);
+    
+BEGIN
+
+process(clk, rst)
+BEGIN
+   IF(rst='1') THEN
+       temp &lt;= (OTHERS =&gt; '0');
+   ELSIF(rising_edge(clk)) THEN
+       temp &lt;= data;
+   END IF;
+END PROCESS;
+
+queue &lt;= temp;
+    
+END Behavioral;</vhdl>
   <vhdl name="gradient_descent">--------------------------------------------------------------------------------&#13;
 -- Project :&#13; Hardware_Implemented_Neural_Network
 -- File    :&#13;

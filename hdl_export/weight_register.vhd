@@ -1,37 +1,48 @@
 --------------------------------------------------------------------------------
--- Project :
--- File    :
+-- Project : Hardware_Implemented_Neural_Network
+-- File    : 
 -- Autor   :
 -- Date    :
 --
 --------------------------------------------------------------------------------
--- Description :
+-- Description : 
+-- This is a weight register that takes in data and outputs it on the next clock cycle.
 --
 --------------------------------------------------------------------------------
 
-LIBRARY ieee;
-USE ieee.std_logic_1164.all;
+-- The weight_register entity has a clock (clk), reset (rst), data, and queue port. 
+-- When the reset port is high, the temp signal is set to all 0's. When the clock 
+-- port is high (on the rising edge), the temp signal is set to the data. The queue 
+-- port is always equal to the temp signal.
 
-ENTITY register_input_1 IS
-  PORT (
-  ------------------------------------------------------------------------------
-  --Insert input ports below
-    clock      : IN  std_logic;                    -- input bit example
-    val        : IN  std_logic_vector(3 DOWNTO 0); -- input vector example
-  ------------------------------------------------------------------------------
-  --Insert output ports below
-    max        : OUT std_logic;                    -- output bit example
-    cpt        : OUT std_logic_vector(3 DOWNTO 0)  -- output vector example
+
+LIBRARY IEEE;
+USE IEEE.std_logic_1164.ALL;
+
+entity weight_register is
+    port(
+        clk : IN std_logic;
+        rst : IN std_logic;
+        data : IN std_logic_vector(7 DOWNTO 0);
+        queue : OUT std_logic_vector(7 DOWNTO 0)
     );
-END register_input_1;
+END weight_register;
 
---------------------------------------------------------------------------------
---Complete your VHDL description below
---------------------------------------------------------------------------------
+ARCHITECTURE Behavioral OF weight_register IS
 
-ARCHITECTURE TypeArchitecture OF register_input_1 IS
-
+signal temp : std_logic_vector(7 DOWNTO 0);
+    
 BEGIN
 
+process(clk, rst)
+BEGIN
+   IF(rst='1') THEN
+       temp <= (OTHERS => '0');
+   ELSIF(rising_edge(clk)) THEN
+       temp <= data;
+   END IF;
+END PROCESS;
 
-END TypeArchitecture;
+queue <= temp;
+    
+END Behavioral;
