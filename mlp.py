@@ -12,7 +12,7 @@ Original file is located at
 # download dependencies
 !pip install tensorflow numpy pandas keras
 
-# Imports
+# imports
 import numpy as np
 
 from tensorflow.keras import optimizers
@@ -29,41 +29,59 @@ from sklearn.model_selection import train_test_split
 https://www.kaggle.com/datasets/arshid/iris-flower-dataset?select=IRIS.csv
 """
 
+# load the dataset
 iris_dataset = datasets.load_iris()
 
-X = iris_dataset.data
-y = iris_dataset.target
-
+# multiply all indicies by 10 and convert to int type
+# conversion is required since the digital circuit takes in integers as input
 
 for num in iris_dataset['data']:
   num *= 10
 
 iris_dataset['data'] = iris_dataset['data'].astype(int)
 
+X = iris_dataset.data
+y = iris_dataset.target
+
+# dataset format
 iris_dataset
 
 """# Defining the Model"""
 
+# define a sequential model
 network = models.Sequential()
+
+# the implemented MLP structure:
+# 1 input layer
+# 1 hidden layer with 3 neurons
+# 1 output layer
+
 network.add(layers.Dense(3, activation='sigmoid', input_shape=(4,)))
 
 """# Compiling the Model"""
 
+# adam optimizer
 adam_optimizer = optimizers.Adam(learning_rate=0.1)
 
 network.compile(optimizer=adam_optimizer,
                 loss='categorical_crossentropy',
                 metrics=['accuracy'])
 
+# model object
+network
+
 """# Separating Training and Testing Data"""
 
+# split data into train batch and test batch
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, stratify=y, random_state=42)
 
-train_labels = to_categorical(y_train)
-test_labels = to_categorical(y_test)
+# convert labels to integer categorical data 
+train_labels = to_categorical(y_train).astype(int)
+test_labels = to_categorical(y_test).astype(int)
 
 """# Training the Model"""
 
+# checks if model is saved to prevent retraining 
 try:
   network = models.load_model('/content/sample_data/mlp')
 except:
@@ -71,10 +89,13 @@ except:
 
 """# Evaluating the Model with Test Data"""
 
+# evaluation metrics
 test_loss, test_acc = network.evaluate(X_test, test_labels)
 
 """# Save the model"""
 
+# save the model
 network.save('/content/sample_data/mlp')
 
+# extract weight data and convert to integer type to be inputted into the digital circuit 
 for layer in network.layers: print(layer.get_weights()[0].astype(int), layer.get_weights()[1].astype(int))
