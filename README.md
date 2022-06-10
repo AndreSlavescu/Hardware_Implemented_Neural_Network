@@ -24,5 +24,6 @@ The weights produced from training the model will be hard coded into the digital
 
 The below image is the design of the implemented MLP (1 input layer of 4 inputs, 1 hidden layer of 3 neurons, 1 output layer with a sigmoid activation function):
 
+![image](https://user-images.githubusercontent.com/51034490/173158875-0907e6d9-0e2a-42df-b75c-6babce553956.png)
 
 
