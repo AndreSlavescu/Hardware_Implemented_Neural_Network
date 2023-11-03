@@ -7,8 +7,8 @@ ENTITY MLP IS
   PORT (
     clk       : IN  std_logic;
     rst       : IN  std_logic;
-    data_in   : IN  std_logic_vector(7 DOWNTO 0);
-    data_out  : OUT std_logic_vector(7 DOWNTO 0)
+    data_in   : IN  std_logic_vector(31 DOWNTO 0);
+    data_out  : OUT std_logic
     );
 END MLP;
 
@@ -17,54 +17,54 @@ ARCHITECTURE Behavioral OF MLP IS
         PORT(
             clk : IN std_logic;
             rst : IN std_logic;
-            data : IN std_logic_vector(7 DOWNTO 0);
-            queue : OUT std_logic_vector(7 DOWNTO 0)
+            data : IN std_logic_vector(31 DOWNTO 0);
+            queue : OUT std_logic_vector(31 DOWNTO 0)
         );
     END COMPONENT;
     
     COMPONENT neuron
         GENERIC (
-            DATA_WIDTH : natural := 8;
-            WEIGHT_WIDTH : natural := 8
+            DATA_WIDTH : natural := 32;
+            WEIGHT_WIDTH : natural := 32
         );
         PORT (
             clk : IN std_logic;
             rst : IN std_logic;
-            inputs : IN std_logic_vector(7 DOWNTO 0);
-            weights : IN std_logic_vector(7 DOWNTO 0);
-            output : OUT std_logic_vector(7 DOWNTO 0)
+            inputs : IN std_logic_vector(31 DOWNTO 0);
+            weights : IN std_logic_vector(31 DOWNTO 0);
+            output : OUT std_logic_vector(31 DOWNTO 0)
         );
     END COMPONENT;
     
     COMPONENT layer
         GENERIC (
-            DATA_WIDTH : natural := 8;
-            WEIGHT_WIDTH : natural := 8;
+            DATA_WIDTH : natural := 32;
+            WEIGHT_WIDTH : natural := 32;
             NUM_NEURONS : natural := 8
         );
         PORT (
             clk : IN std_logic;
             rst : IN std_logic;
-            inputs : IN std_logic_vector(63 DOWNTO 0); 
-            weights : IN std_logic_vector(63 DOWNTO 0); 
-            outputs : OUT std_logic_vector(63 DOWNTO 0) 
+            inputs : IN std_logic_vector(255 DOWNTO 0); 
+            weights : IN std_logic_vector(255 DOWNTO 0); 
+            outputs : OUT std_logic_vector(255 DOWNTO 0) 
         );
     END COMPONENT;
     
     COMPONENT gradient_descent
         PORT(
-            x : IN std_logic_vector(7 DOWNTO 0);
-            y : IN std_logic_vector(7 DOWNTO 0);
+            x : IN std_logic_vector(31 DOWNTO 0);
+            y : IN std_logic_vector(31 DOWNTO 0);
             clk : IN std_logic;
             rst : IN std_logic;
             done : OUT std_logic;
-            weight_out : OUT std_logic_vector(7 DOWNTO 0) -- Updated weight output
+            weight_out : OUT std_logic_vector(31 DOWNTO 0) -- Updated weight output
         );
     END COMPONENT;
     
-    SIGNAL wr_queue, layer_inputs, layer_outputs, neuron_output, gd_x, gd_y : std_logic_vector(7 DOWNTO 0);
-    SIGNAL weights : std_logic_vector(63 DOWNTO 0);
-    SIGNAL updated_weight : std_logic_vector(7 DOWNTO 0); -- New signal for updated weight
+    SIGNAL wr_queue, layer_inputs, layer_outputs, neuron_output, gd_x, gd_y : std_logic_vector(31 DOWNTO 0);
+    SIGNAL weights : std_logic_vector(255 DOWNTO 0);
+    SIGNAL updated_weight : std_logic_vector(31 DOWNTO 0);
     
 BEGIN
     wr: weight_register PORT MAP(
@@ -78,7 +78,7 @@ BEGIN
         clk => clk,
         rst => rst,
         inputs => wr_queue,
-        weights => weights(7 DOWNTO 0),
+        weights => weights(31 DOWNTO 0),
         output => neuron_output
     );
     
@@ -99,6 +99,6 @@ BEGIN
         weight_out => updated_weight -- Updated weight
     );
     
-    data_out <= gd_y; 
+    data_out <= '1' when neuron_output = data_in else '0'; 
     
 END Behavioral;

@@ -20,13 +20,16 @@ USE ieee.std_logic_arith.all;
 USE ieee.std_logic_unsigned.all;
 
 ENTITY Sigmoid IS
-  PORT (
-  ------------------------------------------------------------------------------
-  --Insert input ports below
-    x        	: IN  std_logic_vector(7 DOWNTO 0); -- input vector
-  ------------------------------------------------------------------------------
-  --Insert output ports below
-    y        	: OUT std_logic_vector(7 DOWNTO 0)  -- output vector
+    GENERIC (
+        DATA_WIDTH : natural := 32
+    );
+    PORT (
+      ------------------------------------------------------------------------------
+      --Insert input ports below
+        x : IN  std_logic_vector(DATA_WIDTH-1 DOWNTO 0); -- input vector
+      ------------------------------------------------------------------------------
+      --Insert output ports below
+        y : OUT std_logic_vector(DATA_WIDTH-1 DOWNTO 0)  -- output vector
     );
 END Sigmoid;
 

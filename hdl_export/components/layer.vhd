@@ -20,9 +20,9 @@ USE IEEE.std_logic_unsigned.ALL;
 
 ENTITY layer IS
     GENERIC (
-        DATA_WIDTH : natural := 8;
-        WEIGHT_WIDTH : natural := 8;
-        NUM_NEURONS : natural := 8
+        DATA_WIDTH : natural := 32;
+        WEIGHT_WIDTH : natural := 32;
+        NUM_NEURONS : natural := 32
     );
     PORT (
         clk : IN std_logic;

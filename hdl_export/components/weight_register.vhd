@@ -21,11 +21,11 @@ Hardware_Implemented_Neural_Network
 LIBRARY IEEE;
 USE IEEE.std_logic_1164.ALL;
 
-entity weight_register is
-    generic (
-        DATA_WIDTH : natural := 8
+ENTITY weight_register IS
+    GENERIC (
+        DATA_WIDTH : natural := 32
     );
-    port(
+    PORT (
         clk : IN std_logic;
         rst : IN std_logic;
         data : IN std_logic_vector(DATA_WIDTH-1 DOWNTO 0);
@@ -35,7 +35,7 @@ END weight_register;
 
 ARCHITECTURE Behavioral OF weight_register IS
 
-signal temp : std_logic_vector(DATA_WIDTH-1 DOWNTO 0);
+SIGNAL temp : std_logic_vector(DATA_WIDTH-1 DOWNTO 0);
     
 BEGIN
 

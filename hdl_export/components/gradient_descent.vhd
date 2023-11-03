@@ -14,18 +14,20 @@ Hardware_Implemented_Neural_Network
 --------------------------------------------------------------------------------
 
 LIBRARY IEEE;
-USE IEEE.STD_LOGIC_1164.all;
-USE IEEE.STD_LOGIC_ARITH.all;
-USE IEEE.STD_LOGIC_UNSIGNED.all;
+USE IEEE.STD_LOGIC_1164.ALL;
+USE IEEE.NUMERIC_STD.ALL;  -- Updated library for arithmetic operations
 
 ENTITY gradient_descent IS
-PORT(
-    x : IN std_logic_vector(7 downto 0);
-    y : IN std_logic_vector(7 downto 0);
-    clk : IN std_logic;
-    rst : IN std_logic;
-    done : OUT std_logic;
-    weight_out : OUT std_logic_vector(7 DOWNTO 0) -- Output the updated weight
+    GENERIC (
+        DATA_WIDTH : natural := 32
+    );
+    PORT (
+        x : IN std_logic_vector(DATA_WIDTH-1 downto 0);
+        y : IN std_logic_vector(DATA_WIDTH-1 downto 0);
+        clk : IN std_logic;
+        rst : IN std_logic;
+        done : OUT std_logic;
+        weight_out : OUT std_logic_vector(DATA_WIDTH-1 DOWNTO 0) -- Output the updated weight
     );
 END gradient_descent;
 
@@ -35,10 +37,10 @@ END gradient_descent;
 
 ARCHITECTURE Behavioral OF gradient_descent IS
 
-signal weight : std_logic_vector(7 DOWNTO 0) := (others => '0'); -- Initialize weight
-signal error : std_logic_vector(7 DOWNTO 0);
-signal gradient : std_logic_vector(7 DOWNTO 0);
-constant learning_rate : std_logic_vector(7 DOWNTO 0) := "00001010"; -- Learning rate as a fixed-point value
+signal weight : std_logic_vector(DATA_WIDTH-1 DOWNTO 0) := (others => '0'); -- Initialize weight
+signal error : std_logic_vector(DATA_WIDTH-1 DOWNTO 0);
+signal gradient : std_logic_vector(DATA_WIDTH-1 DOWNTO 0);
+constant learning_rate : std_logic_vector(DATA_WIDTH-1 DOWNTO 0) := x"0000000A"; -- Learning rate as a fixed-point value
 
 BEGIN
 
@@ -47,13 +49,13 @@ begin
     if(rst = '1') then
         weight <= (others => '0'); -- Reset weight
     elsif(rising_edge(clk)) then
-        error <= x - y; -- Compute error
-        gradient <= error * x; -- Compute gradient descent
-        weight <= weight - (learning_rate * gradient); -- Update weight
+        error <= std_logic_vector(signed(x) - signed(y)); -- Compute error
+        gradient <= std_logic_vector(signed(error) * signed(x)); -- Compute gradient descent
+        weight <= std_logic_vector(signed(weight) - (resize(signed(learning_rate), DATA_WIDTH) * signed(gradient))); -- Update weight
     end if;
 end process;
 
-done <= '1' when error = "00000000" else '0'; -- Complete when error is reaches 0
+done <= '1' when error = std_logic_vector(to_signed(0, DATA_WIDTH)) else '0'; -- Complete when error is reaches 0
 weight_out <= weight; 
 
 END Behavioral;

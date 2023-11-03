@@ -20,8 +20,8 @@ USE IEEE.std_logic_unsigned.ALL;
 
 ENTITY neuron IS
     GENERIC (
-        DATA_WIDTH : natural := 8;
-        WEIGHT_WIDTH : natural := 8
+        DATA_WIDTH : natural := 32;
+        WEIGHT_WIDTH : natural := 32
     );
     PORT (
         clk : IN std_logic;
