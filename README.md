@@ -10,7 +10,7 @@ The three parts are as follow:
 
 The above three parts are what make up a standard MLP structure.
 
-## Inference VS Learning
+## Inference with Pretrained Weights vs. Back Propagation
 There are two approaches that can be taken. \
 The first approach is to use pretrained weights which will allow us to perform inference steps by feeding a stream of data to our network. \
 The second approach is to use a gradient descent algorithm to perform a learning step.
