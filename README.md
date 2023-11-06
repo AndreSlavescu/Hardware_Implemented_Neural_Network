@@ -5,7 +5,7 @@ Our objective is to implement a standard MLP (Multi Layer Perceptron) structure 
 The three parts are as follow:
 
 - Input layer
-- Neurons which construct our hidden layer
+- Neurons which construct hidden layers
 - Output layer and activation function
 
 The above three parts are what make up a standard MLP structure.
